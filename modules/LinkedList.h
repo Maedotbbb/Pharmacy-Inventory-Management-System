@@ -12,8 +12,11 @@ struct Node
 class LinkedList
 {
 public:
-    LinkedList() { head = nullptr; }
-    void insert(int value);
+    LinkedList();
+    void insertAtEnd(int value);
+    void removeFront();
+    int front() const;
+    bool isEmpty() const;
     void display() const;
     void remove(int value);
 

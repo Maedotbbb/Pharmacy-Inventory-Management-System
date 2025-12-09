@@ -7,10 +7,39 @@ LinkedList::LinkedList()
     head = nullptr;
 }
 
-void LinkedList::insert(int value)
+bool LinkedList::isEmpty() const
 {
-    Node *newNode = new Node{value, head};
-    head = newNode;
+    return head == nullptr;
+}
+
+int LinkedList::front() const
+{
+    if (head)
+        return head->data;
+    else
+    {
+        cout << "List is empty.\n";
+        return -1;
+    }
+}
+
+void LinkedList::insertAtEnd(int value)
+{
+    Node *newNode = new Node{value, nullptr};
+
+    if (isEmpty())
+    {
+        head = newNode;
+        return;
+    }
+
+    Node *current = head;
+    while (current->next != nullptr)
+    {
+        current = current->next;
+    }
+
+    current->next = newNode;
 }
 
 void LinkedList::display() const
@@ -22,6 +51,16 @@ void LinkedList::display() const
         current = current->next;
     }
     cout << "NULL" << endl;
+}
+
+void LinkedList::removeFront()
+{
+    if (isEmpty())
+        return;
+
+    Node *temp = head;
+    head = head->next;
+    delete temp;
 }
 
 void LinkedList::remove(int value)
